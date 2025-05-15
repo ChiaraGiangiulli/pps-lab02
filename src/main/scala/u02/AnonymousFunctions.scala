@@ -10,6 +10,12 @@ object AnonymousFunctions extends App:
   val f5: (Int, Int) => Int = f4
   // val f6 = _ + _ // won't type-check
 
+  val res = f3(4,6) match
+    case 10 => "correct"
+    case _ => "wrong"
+
+  println(res)
+
   println(s"${f1(10, 5)}, ${f4(10, 5)}") // (15,15)
 
   val g: Int => Int =
@@ -33,6 +39,10 @@ object AnonymousFunctions extends App:
   println(i(10, _ + 1, _ * 2)) // 21
 
   val l: (Int => Int) => (Int => Int) =
-    f => (i => f(f(i))) // without parens: f => i => f(f(i))
+    f => i => f(f(i)) // without parens: f => i => f(f(i))
 
   println(l(_ + 1)(10)) // 12, see currying next..
+
+  //f = ( _ + 1)
+  //l(_ + 1) = i => (_ + 1)((_ + 1)(i))
+  //i => (i + 1) + 1

@@ -1,5 +1,7 @@
 package u02
 
+import u02.AlgebraicDataTypes.WeekDay.Friday
+
 object AlgebraicDataTypes extends App :
 
   enum Person: // a sum type defined by enumerating various cases
@@ -15,8 +17,13 @@ object AlgebraicDataTypes extends App :
   enum WeekDay: // a Java-like enumeration
     case Monday, Tuesday, Wednesday, Thursday, Friday
 
-  def preferredDay(d: WeekDay): Boolean =
-    d == WeekDay.Friday // could have used matching instead
+  def preferredDay(d: WeekDay): Boolean = d match
+    case WeekDay.Friday => true
+    case _ => false
+    //d == WeekDay.Friday // could have used matching instead
+
+
+  println(preferredDay(Friday))
 
   // A LinkedList of Int
   enum IntList: // a recursive type
